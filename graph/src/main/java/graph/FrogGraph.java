@@ -1,11 +1,17 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FrogGraph {
 
     private List<Integer> series;
+
+    private Comparator<Integer> comparator = new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o2 - o1;
+        }
+    };
 
     public FrogGraph(List<Integer> series) {
         this.series = series;
@@ -15,9 +21,14 @@ public class FrogGraph {
         if(nums.size()<=0){
             return true;
         }
-        nums.sort(null);
+        nums.sort(comparator);
 
         Integer first = nums.get(0);
+
+        if(first==0){
+            return true;
+        }
+
         if(first>nums.size()-1){
             return false;
         }
@@ -35,5 +46,13 @@ public class FrogGraph {
         return havelHakimi(arrs);
     }
 
+    public static void main(String[] args) {
+        FrogGraph frogGraph=new FrogGraph(Arrays.asList(2,1,1));
+
+        boolean b = frogGraph.havelHakimi(frogGraph.series);
+        System.out.println("b = " + b);
+
+
+    }
 
 }
