@@ -1,13 +1,13 @@
 package graph;
 
-public class LGraph {
+public class MatrixGraph {
 
     private Integer[] vertex;
     private Integer[][] matrix;
     private final Integer n;
 
 
-    private LGraph(Integer n){
+    private MatrixGraph(Integer n){
         this.n=n;
         this.vertex=new Integer[n];
         this.matrix=new Integer[n][n];
@@ -52,7 +52,7 @@ public class LGraph {
 
     public static void main(String[] args) {
 
-        LGraph lGraph=new LGraph(3);
+        MatrixGraph lGraph=new MatrixGraph(3);
         Integer[] vertex = lGraph.vertex;
 
         System.out.println("vertex = " + vertex.length);
