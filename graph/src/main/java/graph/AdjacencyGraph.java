@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AdjacencyGraph {
@@ -24,14 +25,18 @@ public class AdjacencyGraph {
 
     public Integer indegree(Integer n) {
 
-        Node node = this.nodes[n];
+        Node node = this.nodes[n - 1];
 
         int num = 0;
-        ArcNode in = node.in;
 
-        while (in.next != null) {
-            num++;
-            in = in.next;
+        if (node != null) {
+
+            ArcNode in = node.in;
+
+            while (in != null) {
+                num++;
+                in = in.next;
+            }
         }
 
         return num;
@@ -39,14 +44,18 @@ public class AdjacencyGraph {
 
     public Integer outdegree(int n) {
 
-        Node node = this.nodes[n];
+        Node node = this.nodes[n - 1];
 
         int num = 0;
-        ArcNode out = node.out;
 
-        while (out.next != null) {
-            num++;
-            out = out.next;
+        if(node!=null){
+
+            ArcNode out = node.out;
+
+            while (out!=null) {
+                num++;
+                out = out.next;
+            }
         }
 
         return num;
@@ -66,6 +75,10 @@ public class AdjacencyGraph {
 
         Node node = this.nodes[edge.arraySrcIndex()];
 
+        if (node == null) {
+            node = new Node(edge.src);
+            this.nodes[edge.arraySrcIndex()] = node;
+        }
 
         if (node.out == null) {
             node.out = new ArcNode(edge.dst, null);
@@ -86,6 +99,11 @@ public class AdjacencyGraph {
     private void addInEdge(Edge edge) {
 
         Node node = this.nodes[edge.arrayDstIndex()];
+
+        if (node == null) {
+            node = new Node(edge.dst);
+            this.nodes[edge.arrayDstIndex()] = node;
+        }
 
         if (node.in == null) {
             node.in = new ArcNode(edge.src, null);
@@ -113,6 +131,14 @@ public class AdjacencyGraph {
 
         graph.createGraph(edges);
 
+        System.out.println("graph = " + Arrays.asList(graph.nodes));
+
+        Integer indegree = graph.indegree(2);
+
+        Integer outdegree = graph.outdegree(3);
+
+        System.out.println("indegree = " + indegree);
+        System.out.println("outdegree = " + outdegree);
     }
 
 
@@ -142,6 +168,10 @@ class Node {
     Integer id;
     ArcNode out;
     ArcNode in;
+
+    public Node(Integer id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
