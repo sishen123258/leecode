@@ -9,7 +9,7 @@ public class AdjacencyGraph {
 
     Node[] nodes;
 
-    Integer nodeNum;
+    public Integer nodeNum;
 
 
     public void initNodes(int n) {
@@ -119,17 +119,13 @@ public class AdjacencyGraph {
 
     }
 
+    public Node[] getNodes() {
+        return nodes;
+    }
+
     public static void main(String[] args) {
 
-        List<Edge> edges = new ArrayList<>();
-
-        edges.add(new Edge(1, 2));
-        edges.add(new Edge(2, 3));
-
-        AdjacencyGraph graph = new AdjacencyGraph();
-        graph.initNodes(3);
-
-        graph.createGraph(edges);
+        AdjacencyGraph graph = getAdjacencyGraph();
 
         System.out.println("graph = " + Arrays.asList(graph.nodes));
 
@@ -141,45 +137,27 @@ public class AdjacencyGraph {
         System.out.println("outdegree = " + outdegree);
     }
 
+    public static AdjacencyGraph getAdjacencyGraph() {
+        List<Edge> edges = new ArrayList<>();
+
+        edges.add(new Edge(1, 2));
+        edges.add(new Edge(1, 3));
+        edges.add(new Edge(2, 4));
+        edges.add(new Edge(3, 4));
+        edges.add(new Edge(4, 5));
+
+        AdjacencyGraph graph = new AdjacencyGraph();
+        graph.initNodes(edges.size());
+
+        graph.createGraph(edges);
+        return graph;
+    }
+
 
 }
 
-class ArcNode {
-
-    Integer id;
-    ArcNode next;
-
-    public ArcNode(Integer id, ArcNode next) {
-        this.id = id;
-        this.next = next;
-    }
-
-    @Override
-    public String toString() {
-        return "ArcNode{" +
-                "id=" + id +
-                '}';
-    }
-}
 
 
-class Node {
-
-    Integer id;
-    ArcNode out;
-    ArcNode in;
-
-    public Node(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Node{" +
-                "id=" + id +
-                '}';
-    }
-}
 
 
 class Edge {

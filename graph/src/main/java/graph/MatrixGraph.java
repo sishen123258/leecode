@@ -6,8 +6,7 @@ public class MatrixGraph {
     private Integer[][] matrix;
     private final Integer n;
 
-
-    private MatrixGraph(Integer n){
+    public MatrixGraph(Integer n){
         this.n=n;
         this.vertex=new Integer[n];
         this.matrix=new Integer[n][n];
@@ -20,6 +19,11 @@ public class MatrixGraph {
                 matrix[i][j]=0;
             }
         }
+    }
+
+
+    public Integer[][] getMatrix() {
+        return matrix;
     }
 
     private Integer outDegree(int i){
@@ -49,6 +53,38 @@ public class MatrixGraph {
         return degree;
     }
 
+
+    public boolean addItem(int i,int j){
+
+        if(i > n-1 || i<0){
+            return false;
+        }
+
+        if(j > n-1 || j<0){
+            return false;
+        }
+
+        this.matrix[i][j]=this.matrix[j][i]=1;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb=new StringBuilder();
+
+        for(Integer[] items:this.matrix){
+
+            for (Integer node:items){
+                sb.append(node);
+                sb.append(",");
+            }
+            sb.append("\n");
+        }
+
+
+        return sb.toString();
+    }
 
     public static void main(String[] args) {
 
