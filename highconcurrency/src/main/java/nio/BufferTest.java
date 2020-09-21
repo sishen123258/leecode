@@ -39,7 +39,5 @@ public class BufferTest {
         System.out.println("limit = " + limit);
         System.out.println("position = " + position);
 
-
-
     }
 }
