@@ -1,0 +1,5 @@
+package extension
+
+class Test {
+
+}
