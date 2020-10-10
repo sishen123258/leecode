@@ -12,7 +12,9 @@ object MySpark {
       .getOrCreate()
 
     import spark.implicits._
-    spark.read.json("myspark/src/main/resources/people.json").createTempView("person")
+    val frame = spark.read.json("myspark/src/main/resources/people.json")
+
+    frame.createTempView("person")
 
     spark.sql("select * from person").show()
   }
