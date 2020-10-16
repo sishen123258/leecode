@@ -233,8 +233,8 @@ statement
     | REFRESH TABLE multipartIdentifier                                #refreshTable
     | REFRESH FUNCTION multipartIdentifier                             #refreshFunction
     | REFRESH (STRING | .*?)                                           #refreshResource
-    | CACHE LAZY? TABLE multipartIdentifier
-        (OPTIONS options=tablePropertyList)? (AS? query)?              #cacheTable
+    | CACHE LAZY? TABLE multipartIdentifier  (AS? query)?              #cacheTable
+//        (OPTIONS options=tablePropertyList)? (AS? query)?              #cacheTable
     | UNCACHE TABLE (IF EXISTS)? multipartIdentifier                   #uncacheTable
     | CLEAR CACHE                                                      #clearCache
     | LOAD DATA LOCAL? INPATH path=STRING OVERWRITE? INTO TABLE
@@ -340,7 +340,8 @@ insertInto
     : INSERT OVERWRITE TABLE? multipartIdentifier (partitionSpec (IF NOT EXISTS)?)?                         #insertOverwriteTable
     | INSERT INTO TABLE? multipartIdentifier partitionSpec? (IF NOT EXISTS)?                                #insertIntoTable
     | INSERT OVERWRITE LOCAL? DIRECTORY path=STRING rowFormat? createFileFormat?                            #insertOverwriteHiveDir
-    | INSERT OVERWRITE LOCAL? DIRECTORY (path=STRING)? tableProvider (OPTIONS options=tablePropertyList)?   #insertOverwriteDir
+    | INSERT OVERWRITE LOCAL? DIRECTORY (path=STRING)? tableProvider?   #insertOverwriteDir
+    //(OPTIONS options=tablePropertyList)
     ;
 
 partitionSpecLocation
@@ -386,8 +387,8 @@ tableProvider
     ;
 
 createTableClauses
-    :((OPTIONS options=tablePropertyList) |
-     (PARTITIONED BY partitioning=transformList) |
+    ://((OPTIONS options=tablePropertyList) |
+     ((PARTITIONED BY partitioning=transformList) |
      bucketSpec |
      locationSpec |
      commentSpec |

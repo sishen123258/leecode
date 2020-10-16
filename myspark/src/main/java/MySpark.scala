@@ -16,7 +16,13 @@ object MySpark {
 
     frame.createTempView("person")
 
-    spark.sql("select * from person").show()
+    val sql = "select * from person"
+    val logicalPlan = spark.sessionState.sqlParser.parsePlan(sql)
+
+    spark.sessionState.analyzer
+    println(logicalPlan)
+    println(logicalPlan.resolved)
+    spark.sql(sql).show()
   }
 
   def persons()={
