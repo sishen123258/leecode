@@ -13,6 +13,9 @@
     <modules>
         <module>tree</module>
         <module>graph</module>
+        <module>highconcurrency</module>
+        <module>MyAntlr</module>
+        <module>myspark</module>
     </modules>
 
 
