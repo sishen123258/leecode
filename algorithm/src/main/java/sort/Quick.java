@@ -58,7 +58,7 @@ public class Quick {
 
         exchange(input,start,j);
 
-        return j; //  为什么必须是j
+        return j; //  为什么必须是j，因为指向的数字是小于v的
     }
 
     private static void exchange(List<Integer> input, int i, int j) {
