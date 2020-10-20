@@ -16,6 +16,7 @@
         <module>highconcurrency</module>
         <module>MyAntlr</module>
         <module>myspark</module>
+        <module>algorithm</module>
     </modules>
 
 
