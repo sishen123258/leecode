@@ -17,6 +17,7 @@
         <module>MyAntlr</module>
         <module>myspark</module>
         <module>algorithm</module>
+        <module>myflink</module>
     </modules>
 
 
