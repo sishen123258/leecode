@@ -63,8 +63,4 @@ public class PreInstalledDimTable {
             return new Tuple3<String, Integer, String>(value.f0,value.f1,v3);
         }
     }
-
-    
-
-
 }
