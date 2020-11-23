@@ -67,8 +67,5 @@ public class TableTimeAttr {
         tableEnv.executeSql(sql);
 
     }
-
-
-
-
 }
+
