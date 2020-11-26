@@ -1,5 +1,0 @@
-package extension
-
-class Test {
-
-}

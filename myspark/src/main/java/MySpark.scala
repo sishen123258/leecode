@@ -11,6 +11,7 @@ object MySpark {
       .config("spark.testing.memory", "2147480000")
       .getOrCreate()
 
+    spark.read.schema("id STRING").csv()
     import spark.implicits._
     val frame = spark.read.json("myspark/src/main/resources/people.json")
 
