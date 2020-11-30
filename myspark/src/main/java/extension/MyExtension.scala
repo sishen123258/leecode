@@ -1,6 +1,7 @@
 package extension
 
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.storage.StorageLevel
 
 
 case class SampleData(upm_id: String, c1: String, c2: String, c3: String)
@@ -18,6 +19,8 @@ object MyExtension {
 //        sse.injectResolutionRule()
       })
       .getOrCreate()
+
+    spark.catalog.cacheTable("a",StorageLevel.MEMORY_AND_DISK)
 
     spark.createDataFrame(Array(SampleData("u1","c1","c2","c3"))).createTempView("table_a")
 
